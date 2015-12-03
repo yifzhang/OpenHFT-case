@@ -2,7 +2,7 @@
 1. 使用ChironicleMap对比HashMap，可以实现JVM内的堆内存恒定不变，ChironiclMap仅仅在堆上保持reference相关的内容，
 因此在大内存下，他的GC情况要明显好
 2. ChironicleMap在使用的时候需要指定总的entry数量的最大值，以及每个entry的大小（指定了entry的Interface后，它会自己推算），
-稍微大些没关系，只会多占用些硬盘空间。
+稍微大些没关系，只会多占用些硬盘空间。另外，如果是超过了指定的entry最大数量，再put的时候会抛出异常。
 3. 在ChironicleMap中如果将key作为Integer使用，仍然会耗用更多的内存，相比下，使用OpenHft的lang包中的IntValue.class
 则可以更大限度的节省JVM堆的空间
 4. ChironicleMap使用newValueInstance和newKeyInstance来获得该Map种的value和key，但是获得到的对象在JVM层面看到的都是接口，
